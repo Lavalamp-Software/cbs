@@ -43,7 +43,7 @@ private:
 	const char* __cmd;
 	/**
 	 * {__input} is the data collected from the terminal
-	 * by the developer. This input will be translated to
+	 * by the user. This input will be translated to
 	 * {__cmd} and then proceed for validation.
 	 */
 	const char* __input;
@@ -61,11 +61,30 @@ public:
 	command& operator = (const command&) = delete;
 	command operator = (command&) = delete;
 public:
-	virtual bool execute() const;
-	virtual bool validate() const;
-
-	virtual void set_command() noexcept;
-	virtual void get_input(const char*) noexcept;
+	/**
+	 * Execute the command set by {__cmd}
+	 * If the execution succeeded without errors,
+	 * the value of {__execute_success} will be true.
+	 */
+	virtual const bool execute() const;
+	/**
+	 * Validate the command set by {__cmd}
+	 * If there is no syntax errors, then
+	 * {__validated_src} will be true.
+	 */
+	virtual const bool validate() const;
+	/**
+	 * Sets the value of {__cmd} and will proceed
+	 * for validation.
+	 */
+	virtual void set_command(const char*) noexcept;
+	/**
+	 * Fetch input from whatever terminal system
+	 * the user is using. This will invoke
+	 * {command#set_command} to set the final value
+	 * of {__cmd} from {__input}.
+	 */
+	virtual void get_input() noexcept;
 };
 
 #endif /* _CBS_INCLUDE_CC_COMMAND_H */
