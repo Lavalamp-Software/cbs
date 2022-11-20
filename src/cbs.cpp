@@ -6,11 +6,7 @@
 // Description : Entry point for application
 //============================================================================
 
-#include <iostream>
-
-#define s std::
 
 int main() {
-	s cout << "hi" << s endl; // prints hi
-	return 0;
+
 }
