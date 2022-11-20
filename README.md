@@ -2,7 +2,7 @@
 
 -----------------
 
-###### Developed by shabman (Mustafa Malik) and Intervinn
+###### CLI Developed by shabman (Mustafa Malik) and Website Developed by Intervinn
 
 - Coming Soon...
 

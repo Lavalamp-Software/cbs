@@ -11,6 +11,8 @@
 
 #include "cli_config.h"
 
+namespace lavalamp {
+
 /**
  * The {uploader} class is a child derived
  * from {command} which is a CLI action interface.
@@ -18,7 +20,7 @@
  * CBS site for other users to access and download their
  * packages. This class is marked as final and should not be
  * derived from.
- */
+*/
 class uploader final : public command {
 private:
 	/**
@@ -146,5 +148,7 @@ public:
 	 */
 	void get_input() noexcept override;
 };
+
+}
 
 #endif /* _CBS_INCLUDE_CCLI_UPLOADER_H */

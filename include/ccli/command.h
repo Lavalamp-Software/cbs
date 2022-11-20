@@ -11,6 +11,8 @@
 
 #include "cli_config.h"
 
+namespace lavalamp {
+
 /**
  * The {command} class is the base class for
  * all CLI related actions. Any CLI command will
@@ -87,5 +89,7 @@ public:
 	 */
 	virtual void get_input() noexcept;
 };
+
+}
 
 #endif /* _CBS_INCLUDE_CCLI_COMMAND_H */
