@@ -66,13 +66,13 @@ public:
 	 * If the execution succeeded without errors,
 	 * the value of {__execute_success} will be true.
 	 */
-	virtual const bool execute() const;
+	virtual const bool execute();
 	/**
 	 * Validate the command set by {__cmd}
 	 * If there is no syntax errors, then
 	 * {__validated_src} will be true.
 	 */
-	virtual const bool validate() const;
+	virtual const bool validate();
 	/**
 	 * Sets the value of {__cmd} and will proceed
 	 * for validation.
