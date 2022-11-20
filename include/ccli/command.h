@@ -6,8 +6,10 @@
 // Description : Base class for CLI actions
 //============================================================================
 
-#ifndef _CBS_INCLUDE_CC_COMMAND_H
-#define _CBS_INCLUDE_CC_COMMAND_H
+#ifndef _CBS_INCLUDE_CCLI_COMMAND_H
+#define _CBS_INCLUDE_CCLI_COMMAND_H
+
+#include "cli_config.h"
 
 /**
  * The {command} class is the base class for
@@ -19,7 +21,7 @@
  * NOTE: Please do not heap allocate this class.
  */
 class command {
-private:
+protected:
 	/**
 	 * {__execute_success} will be set to true
 	 * if the execution of the selected command
@@ -50,7 +52,6 @@ private:
 public:
 	command();
 	virtual ~command();
-
 	/*
 	 * Copy constructors/Assignment operators are redundant
 	 * for this base class
@@ -87,4 +88,4 @@ public:
 	virtual void get_input() noexcept;
 };
 
-#endif /* _CBS_INCLUDE_CC_COMMAND_H */
+#endif /* _CBS_INCLUDE_CCLI_COMMAND_H */

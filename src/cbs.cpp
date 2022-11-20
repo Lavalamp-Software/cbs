@@ -7,6 +7,7 @@
 //============================================================================
 
 #include "../include/ccli/command.h"
+#include "../include/ccli/uploader.h"
 
 int main() {
 
