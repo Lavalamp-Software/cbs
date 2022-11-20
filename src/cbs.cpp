@@ -6,6 +6,7 @@
 // Description : Entry point for application
 //============================================================================
 
+#include "../include/ccli/command.h"
 
 int main() {
 
