@@ -13,6 +13,8 @@
 
 namespace lavalamp {
 
+namespace cli {
+
 /**
  * The {command} class is the base class for
  * all CLI related actions. Any CLI command will
@@ -69,27 +71,28 @@ public:
 	 * If the execution succeeded without errors,
 	 * the value of {__execute_success} will be true.
 	 */
-	virtual const bool execute();
+	virtual LIB_LAVALAMP_CONST_FUNC bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Validate the command set by {__cmd}
 	 * If there is no syntax errors, then
 	 * {__validated_src} will be true.
 	 */
-	virtual const bool validate();
+	virtual LIB_LAVALAMP_CONST_FUNC bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Sets the value of {__cmd} and will proceed
 	 * for validation.
 	 */
-	virtual void set_command(const char*) noexcept;
+	virtual void set_command(const char*) LIB_LAVALAMP_CLI_DONT_THROW(true);
 	/**
 	 * Fetch input from whatever terminal system
 	 * the user is using. This will invoke
 	 * {command#set_command} to set the final value
 	 * of {__cmd} from {__input}.
 	 */
-	virtual void get_input() noexcept;
+	virtual void get_input() LIB_LAVALAMP_CLI_DONT_THROW(true);
 };
 
+}
 }
 
 #endif /* _CBS_INCLUDE_CCLI_COMMAND_H */

@@ -13,6 +13,8 @@
 
 namespace lavalamp {
 
+namespace cli {
+
 /**
  * The {uploader} class is a child derived
  * from {command} which is a CLI action interface.
@@ -83,26 +85,26 @@ private:
 	 * Returns false if an exception occurs
 	 * or if the API is down.
 	 */
-	const bool __upload_async(const char*);
+	LIB_LAVALAMP_CONST_FUNC bool __upload_async(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Parsers the project to ensure there is a
 	 * `config.cbf` file and its contents have
 	 * valid syntax. If not, then this will return
 	 * false
 	 */
-	const bool __validate_package(const char*);
+	LIB_LAVALAMP_CONST_FUNC bool __validate_package(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Checks if the CBS API is alive by sending
 	 * a HTTP Request with dummy data. If HTTP response 200
 	 * is given, the API is alive and this will return true.
 	 */
-	const bool __api_awake();
+	LIB_LAVALAMP_CONST_FUNC bool __api_awake() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Encodes the project files into base64
 	 * to simplify the storage of package content
 	 * and ease load on the CBS API.
 	 */
-	void __encode();
+	void __encode() LIB_LAVALAMP_CLI_DONT_THROW(false);
 public:
 	uploader();
 	~uploader() override;
@@ -128,27 +130,28 @@ public:
 	 * If the execution succeeded without errors,
 	 * the value of {command#execute} will be true.
 	 */
-	const bool execute() override;
+	LIB_LAVALAMP_CONST_FUNC bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
 	/**
 	 * Validate the command set by {__cmd}
 	 * If there is no syntax errors, then
 	 * {command#validate} will be true.
 	 */
-	const bool validate() override;
+	LIB_LAVALAMP_CONST_FUNC bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
 	/**
 	 * Sets the value of {__cmd} and will proceed
 	 * for validation.
 	 */
-	void set_command(const char*) noexcept override;
+	void set_command(const char*) LIB_LAVALAMP_CLI_DONT_THROW(true) override;
 	/**
 	 * Fetch input from whatever terminal system
 	 * the user is using. This will invoke
 	 * {command#set_command} to set the final value
 	 * of {__cmd} from {__input}.
 	 */
-	void get_input() noexcept override;
+	void get_input() LIB_LAVALAMP_CLI_DONT_THROW(true) override;
 };
 
+}
 }
 
 #endif /* _CBS_INCLUDE_CCLI_UPLOADER_H */
