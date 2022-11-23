@@ -11,10 +11,9 @@
 
 #include "../cclibstypes.h"
 #include "../config.h"
+#include "../pathpresets.h"
 
-#define LIB_LAVALAMP_CLI_DONT_THROW(__t_type) noexcept(__t_type)
-#define LIB_LAVALAMP_CONST_RETURN const
-#define LIB_LAVALAMP_CONST_FUNC LIB_LAVALAMP_CONST_RETURN
+#define LIB_LAVALAMP_CLI_DONT_THROW(__t_type) LIB_LAVALAMP_DONT_THROW(__t_type)
 
 #ifndef _CBS_INCLUDE_CCLI_COMMAND_H
 	#include "command.h"

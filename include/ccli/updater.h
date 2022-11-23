@@ -58,7 +58,7 @@ private:
 	 * progress unexpectedly fails. The {updater#restore} will
 	 * look for the previous patch files backed up by this method.
 	 */
-	LIB_LAVALAMP_STATIC void backup() LIB_LAVALAMP_CONST_RETURN LIB_LAVALAMP_CLI_DONT_THROW(false);
+	LIB_LAVALAMP_STATIC void backup() const LIB_LAVALAMP_CLI_DONT_THROW(false);
 private:
 	// This is a singleton class, objects are not needed.
 	updater() = delete;
@@ -75,11 +75,28 @@ protected:
 	 * Cleans any left over cache, releases any thread-pools or removes old backup
 	 * files.
 	 */
-	LIB_LAVALAMP_STATIC LIB_LAVALAMP_CONST_FUNC bool clean() 	LIB_LAVALAMP_CONST_RETURN LIB_LAVALAMP_CLI_DONT_THROW(true);
-	LIB_LAVALAMP_STATIC LIB_LAVALAMP_CONST_FUNC bool complete() LIB_LAVALAMP_CONST_RETURN LIB_LAVALAMP_CLI_DONT_THROW(true);
-	LIB_LAVALAMP_STATIC 						void abort() 	LIB_LAVALAMP_CLI_DONT_THROW(false);
-	LIB_LAVALAMP_STATIC 						void cache() 	LIB_LAVALAMP_CONST_RETURN LIB_LAVALAMP_CLI_DONT_THROW(false);
-	LIB_LAVALAMP_STATIC 						void restore() 	LIB_LAVALAMP_CLI_DONT_THROW(false);
+	LIB_LAVALAMP_STATIC const bool clean() const LIB_LAVALAMP_CLI_DONT_THROW(true);
+	/**
+	 * Returns true if the update of the CBS CLI was successfully completed.
+	 */
+	LIB_LAVALAMP_STATIC const bool complete() const LIB_LAVALAMP_CLI_DONT_THROW(true);
+	/**
+	 * Cancels the updating progress regardless
+	 * of where the progress is at.
+	 */
+	LIB_LAVALAMP_STATIC void abort() LIB_LAVALAMP_CLI_DONT_THROW(false);
+	/**
+	 * Caches any required content and places the
+	 * updated patch files in a cached location which
+	 * will be moved once downloading is complete.
+	 */
+	LIB_LAVALAMP_STATIC void cache() const LIB_LAVALAMP_CLI_DONT_THROW(false);
+	/**
+	 * In case of failure, abortion, unexpected errors
+	 * or if the user requests cancellation, the CLI
+	 * will restore to its original version before updating.
+	 */
+	LIB_LAVALAMP_STATIC void restore() LIB_LAVALAMP_CLI_DONT_THROW(false);
 };
 
 }

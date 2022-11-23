@@ -85,20 +85,20 @@ private:
 	 * Returns false if an exception occurs
 	 * or if the API is down.
 	 */
-	LIB_LAVALAMP_CONST_FUNC bool __upload_async(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
+	const bool __upload_async(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Parsers the project to ensure there is a
 	 * `config.cbf` file and its contents have
 	 * valid syntax. If not, then this will return
 	 * false
 	 */
-	LIB_LAVALAMP_CONST_FUNC bool __validate_package(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
+	const bool __validate_package(const char*) LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Checks if the CBS API is alive by sending
 	 * a HTTP Request with dummy data. If HTTP response 200
 	 * is given, the API is alive and this will return true.
 	 */
-	LIB_LAVALAMP_CONST_FUNC bool __api_awake() LIB_LAVALAMP_CLI_DONT_THROW(false);
+	const bool __api_awake() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Encodes the project files into base64
 	 * to simplify the storage of package content
@@ -130,13 +130,13 @@ public:
 	 * If the execution succeeded without errors,
 	 * the value of {command#execute} will be true.
 	 */
-	LIB_LAVALAMP_CONST_FUNC bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
+	const bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
 	/**
 	 * Validate the command set by {__cmd}
 	 * If there is no syntax errors, then
 	 * {command#validate} will be true.
 	 */
-	LIB_LAVALAMP_CONST_FUNC bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
+	const bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false) override;
 	/**
 	 * Sets the value of {__cmd} and will proceed
 	 * for validation.

@@ -71,13 +71,13 @@ public:
 	 * If the execution succeeded without errors,
 	 * the value of {__execute_success} will be true.
 	 */
-	virtual LIB_LAVALAMP_CONST_FUNC bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false);
+	virtual const bool execute() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Validate the command set by {__cmd}
 	 * If there is no syntax errors, then
 	 * {__validated_src} will be true.
 	 */
-	virtual LIB_LAVALAMP_CONST_FUNC bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false);
+	virtual const bool validate() LIB_LAVALAMP_CLI_DONT_THROW(false);
 	/**
 	 * Sets the value of {__cmd} and will proceed
 	 * for validation.
