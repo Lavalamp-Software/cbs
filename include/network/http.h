@@ -9,43 +9,44 @@
 #ifndef CBS_INCLUDE_NETWORK_HTTP_H
 #define CBS_INCLUDE_NETWORK_HTTP_H
 
+#ifdef _WNN32
+	#pragma warning (disable: 4703)
+#endif
+
+#include <curl/curl.h>
+
+#include <istream>
+
 #include "net_config.h"
 #include "../threading/thread_pool.h"
 
+using namespace lavalamp::concurrent;
+
+namespace lavalamp {
+namespace network {
+
 enum class HTTP_CODES {
 	RESPONSE_OK,
-	RESPONSE_SEVER_DOWN,
-	RESPONSE_CLIENT_DOWN,
-	HTTP_UNKNOWN,
-	HTTP_404
-};
-
-enum class HTTP_REQUEST {
-	GET,
-	POST,
-	DELETE,
-	PUT,
-	PATCH
+	RESPONSE_NOT_OK
 };
 
 class http {
 private:
-	HTTP_CODES __response;
-	HTTP_REQUEST __current_req;
-	thread_pool __tp;
-	int __max_tries;
-public:
-	explicit http();
-	~http();
+	CURL* __curl;
+	CURLcode __reply = static_cast<CURLcode>(0); // make the compiler stop crying
+	const char* __url;
 private:
-	const HTTP_CODES get_response() const LIB_LAVALAMP_NET_DONT_THROW(true);
-	const HTTP_CODES send_request(const HTTP_REQUEST&) const LIB_LAVALAMP_NET_DONT_THROW(false);
-	const HTTP_CODES send_request(const HTTP_REQUEST&, const int&) const LIB_LAVALAMP_NET_DONT_THROW(false);
-	const HTTP_CODES send_request_async(const HTTP_REQUEST&) const LIB_LAVALAMP_NET_DONT_THROW(false);
-	const HTTP_CODES send_request_async(const HTTP_REQUEST&, const int&) const LIB_LAVALAMP_NET_DONT_THROW(false);
-
-	HTTP_REQUEST get_current_request() const LIB_LAVALAMP_NET_DONT_THROW(true);
-	int get_max_retries() const LIB_LAVALAMP_NET_DONT_THROW(true);
+	void __cleanup() LIB_LAVALAMP_NET_DONT_THROW(true);
+public:
+	http(const char*);
+	~http();
+public:
+	HTTP_CODES get_response() LIB_LAVALAMP_NET_DONT_THROW(true);
+	CURLcode get_raw_response() LIB_LAVALAMP_NET_DONT_THROW(true);
+	const char* get_url() LIB_LAVALAMP_NET_DONT_THROW(true);
+	void send_request() LIB_LAVALAMP_NET_DONT_THROW(false);
 };
+
+}}
 
 #endif /* CBS_INCLUDE_NETWORK_HTTP_H */

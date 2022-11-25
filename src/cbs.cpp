@@ -10,18 +10,21 @@
 #include "../include/ccli/uploader.h"
 #include "../include/network/http.h"
 #include "../include/threading/thread_pool.h"
+#include "../include/encode/base64.h"
 
 #include <iostream>
-#include <thread>
+#include <cstdio>
 
+#include <curl/curl.h>
+
+namespace thread = lavalamp::concurrent;
+namespace network = lavalamp::network;
 
 int main() {
-    if (__cplusplus == 201703L) std::cout << "C++17\n";
-    else if (__cplusplus == 201402L) std::cout << "C++14\n";
-    else if (__cplusplus == 201103L) std::cout << "C++11\n";
-    else if (__cplusplus == 199711L) std::cout << "C++98\n";
-    else std::cout << "pre-standard C++\n";
-    std::cout << std::thread::hardware_concurrency() << std::endl;
-
+	thread::thread_pool netty([]() -> void {
+		network::http htp("http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/2021/03");
+		htp.send_request();
+		std::cout << htp.get_raw_response() << std::endl;
+	});
+	netty.exec();
 }
-
